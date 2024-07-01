@@ -12,7 +12,7 @@ rawdat <- reg_df %>%
 # Remove variables with nonzero variance (optional)
 nozdat <- caret::nearZeroVar(rawdat, saveMetrics = TRUE, uniqueCut = 0.999999)
 which_rem <- rownames(nozdat)[nozdat[,"nzv"] == TRUE] 
-length(which_rem) # cut 73
+length(which_rem) # cut 74
 
 # Check for duplicates
 dat <- rawdat  %>%
