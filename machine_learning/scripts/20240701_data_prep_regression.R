@@ -1,26 +1,10 @@
 # Install packages
-library("tidyverse")
-library("readxl")
-library("ggpubr")
-library("data.table")
-library("ranger")
-library("caret")
-library("DECIPHER")
-library("ggpmisc")
-
-# Batch353c_8037_p028
-# Batch353c_8037_p031
-# Batch353c_8037_p098
-# Batch353c_8037_p099
-# Batch353c_8037_p108
-# Batch353c_8037_p140
-# Batch353c_8037_p152
-# Batch353c_8037_p160
-# Batch353c_8037_p191
-# Batch353c_8037_p229
+pacman::p_load("tidyverse", "DECIPHER", "Biostrings", "ggpmisc", "caret", 
+               "colorspace", "cowplot", "tidymodels", "ranger", "tree", 
+               "rsample", "randomForest", "readxl", "ggpubr", "RColorBrewer")
 
 # Read in the template
-temp1 <- read_excel("data/Priestia_ML_analysis/template_linearized.xlsx", col_names = F) %>%
+temp1 <- read_excel("data/Machine_learning/template_linearized.xlsx", col_names = F) %>%
   dplyr::select(-31) %>%
   janitor::clean_names() %>%
   as.matrix(bycol = T) %>%
@@ -29,8 +13,8 @@ temp1 <- read_excel("data/Priestia_ML_analysis/template_linearized.xlsx", col_na
 temp1 <- temp1[!is.na(temp1)]
 
 # Read in the CSV
-res <- read_excel('data/Priestia_ML_analysis/20240927_rep3_4_linearized_fluoride.xlsx', col_names = F, sheet = "rep3_linearized_fluoride") %>%
-  dplyr::select(-31) %>%
+res <- read_excel('data/Machine_learning/20240427_alanine_scanning_replicate_average_fluoride_data.xlsx', 
+                  col_names = F, sheet = "average_linearized_fluoride") %>%
   janitor::clean_names() %>%
   as.matrix(bycol = T) %>%
   t %>%
@@ -52,11 +36,7 @@ dat <- bind_cols(label = temp1,
   dplyr::mutate(position_from = substr(label, 2, 2)) %>%
   dplyr::mutate(position_to = substr(label, nchar(label), nchar(label))) %>%
   dplyr::mutate(unique_id = paste0(position_from, "_", position_index, "_", position_to, "_fwd"))
-#arrange(desc(delta)) 
 table(dat$position_from)
-
-table(dat$position_to)
-dat$position_index
 
 # Delta mirrored
 delta_mirror <- res - wt # delta between Ala_mut -> WT
@@ -68,10 +48,6 @@ dat_mirror <- bind_cols(label = temp1,
   dplyr::mutate(position_from = substr(label, nchar(label), nchar(label))) %>%
   dplyr::mutate(position_to = substr(label, 2, 2)) %>%
   dplyr::mutate(unique_id = paste0(position_from, "_", position_index, "_", position_to, "_rev"))
-
-table(dat_mirror$position_from)
-table(dat_mirror$position_to)
-dat$position_index
 
 # Make feature vector
 # source("scripts/R/convert_seq_5aap.R")
