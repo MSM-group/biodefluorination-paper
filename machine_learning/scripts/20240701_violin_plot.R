@@ -1,6 +1,6 @@
 # Install packages
-pacman::p_load("tidyverse", "DECIPHER", "Biostrings", "ggpmisc", "caret", 
-               "colorspace", "cowplot", "tidymodels", "ranger", "tree", 
+pacman::p_load("tidyverse", "DECIPHER", "Biostrings", "ggpmisc", "caret", "gplots",
+               "colorspace", "cowplot", "tidymodels", "ranger", "tree",
                "rsample", "randomForest", "readxl", "ggpubr", "RColorBrewer")
 
 # Read in the template
@@ -57,7 +57,7 @@ dat <- bind_cols(label = label,
                                             position_index %in% 36:69 ~ 2,
                                             position_index %in% 70:109 ~ 3,
                                             position_index %in% 110:150 ~ 4,
-                                            position_index %in% 150:196 ~ 5,
+                                            position_index %in% 151:196 ~ 5,
                                             position_index %in% 197:238 ~ 6,
                                             TRUE ~ NA))
 
@@ -71,7 +71,6 @@ p1 <-  ggplot(dat, aes(x = position_index, y = delta)) +
   ylab("Enzyme activity: wild-type - variant")+
   geom_line(aes(y=0), color = "gray20", linetype = "dashed", linewidth = 0.5) 
 p1  
-
 
 p2 <- ggplot(dat, aes(x = as.factor(chimera_segment), y = delta)) +
   geom_line(aes(y=0), color = "gray20", linetype = "dashed", linewidth = 0.5) + 
@@ -94,10 +93,9 @@ p2 <- ggplot(dat, aes(x = as.factor(chimera_segment), y = delta)) +
               textsize = 5,
               map_signif_level = T)
 p2
-dat$chimera_segment
 
 
-p3 <- cowplot::plot_grid(p1, p2, align = 'v', ncol = 1)
-p3
-ggsave(p3, file = "output/violin_plot.png", height = 7, width = 3)
+
+ggsave(p1, file = "output/distribution_plot.png", height = 4, width = 4)
+ggsave(p2, file = "output/violin_plot.png", height = 6, width = 4)
 
