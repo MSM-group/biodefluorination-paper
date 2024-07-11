@@ -88,7 +88,7 @@ p2 <- ggplot(dat, aes(x = as.factor(chimera_segment), y = delta)) +
                                  c(6,3),
                                  c(6,2),
                                  c(6,1)),
-              y_position = 0.4, tip_length = 0, vjust = 0.7,
+              y_position = 0.8, tip_length = 0, vjust = 0.7,
               step_increase = 0.05,  # To stagger the bars
               textsize = 5,
               map_signif_level = T)
@@ -96,6 +96,6 @@ p2
 
 
 
-ggsave(p1, file = "output/distribution_plot.png", height = 4, width = 4)
-ggsave(p2, file = "output/violin_plot.png", height = 6, width = 4)
+ggsave(p1, file = "output/distribution_plot.png", height = 4, width = 3)
+ggsave(p2, file = "output/violin_plot.png", height = 6, width = 3)
 
