@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Path to the folder containing the CSV files
-folder_path = r'\\eawag\userdata\felderfl\My Documents\GitHub\biodefluorination\modeling\GROMACS automated MD\Graphs & Rawdata\1 ms simulations\C-Term flexibility\WP178\RMSF'
+folder_path = r"\\eawag\userdata\felderfl\My Documents\GitHub\biodefluorination-paper\MD_simulations\Protein segment flexibility\RMSF"
 
 # Get a list of all CSV files in the folder
 csv_files = [file for file in os.listdir(folder_path) if file.endswith('.csv')]
@@ -23,7 +23,7 @@ rmsf = data.iloc[:, 1]
 x_values = range(1, len(rmsf) + 1)
 
 # Create figure and axis with specified size
-fig, ax = plt.subplots(figsize=(4, 6))  # width, height
+fig, ax = plt.subplots(figsize=(8, 5))  # width, height
 
 # Plotting RMSF data
 ax.plot(x_values, rmsf, marker='o', markersize=0, linestyle='-', color='tab:red')
