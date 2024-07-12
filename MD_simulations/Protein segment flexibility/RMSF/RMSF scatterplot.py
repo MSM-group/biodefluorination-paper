@@ -23,7 +23,7 @@ rmsf = data.iloc[:, 1]
 x_values = range(1, len(rmsf) + 1)
 
 # Create figure and axis with specified size
-fig, ax = plt.subplots(figsize=(8, 5))  # width, height
+fig, ax = plt.subplots(figsize=(8, 3))  # width, height
 
 # Plotting RMSF data
 ax.plot(x_values, rmsf, marker='o', markersize=0, linestyle='-', color='tab:red')
