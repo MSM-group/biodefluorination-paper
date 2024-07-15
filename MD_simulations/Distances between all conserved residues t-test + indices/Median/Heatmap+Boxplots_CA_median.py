@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 
-csv_filepath = "//eawag/userdata/felderfl/My Documents/GitHub/biodefluorination/modeling/GROMACS automated MD/Graphs & Rawdata/1 ms simulations/All Conserved Residues Distances/CA/Median/output_medians.csv"
+csv_filepath = 'filepath'
 
 overalltitle = 'C-Alpha_median'
 measure = 'Median'
