@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Path to the folder containing the CSV files
-folder_path = r'\\eawag\userdata\felderfl\My Documents\GitHub\biodefluorination\modeling\GROMACS automated MD\Graphs & Rawdata\1 ms simulations\C-Term flexibility\WP178'
+folder_path = 'filepath'
 
 # Get a list of all CSV files in the folder
 csv_files = [file for file in os.listdir(folder_path) if file.endswith('.csv')]
