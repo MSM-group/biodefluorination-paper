@@ -50,7 +50,7 @@ feat_df <- dat %>%
   dplyr::filter(!is.na(position))
 
 # Try predicting the activity of 20%
-set.seed(20240711)
+set.seed(20240801)
 # Split into test and training data 
 # 80% training
 # 20% test
@@ -83,7 +83,7 @@ mtrys <- c(round(log2(ncol(df_train)), 0), round(ncol(df_train), 0))
 mtrys # number of variables available for splitting at each tree node
 
 rf_grid <- expand.grid(mtry = mtrys,
-                       splitrule = "extratrees",
+                       splitrule = c("variance", "extratrees"),
                        min.node.size = 1)
 
 # Train a machine learning model
@@ -101,7 +101,7 @@ rf <- train(
 
 # Training set accuracy
 getTrainPerf(rf) # Training set accuracy 
-saveRDS(rf, "data/Machine_learning/20240701_regression_random_forest.rds")
+#saveRDS(rf, "data/Machine_learning/20240701_regression_random_forest.rds")
 rf$finalModel$prediction.error # out-of-bag error
 
 #Plot of variable importance
@@ -127,7 +127,6 @@ rf_df <- data.frame(cbind(rf_pred, y_test))
 my.formula <- y ~ x
 summary(lm(rf_df$y_test ~ rf_pred))
 summary(lm(rf_pred ~ rf_df$y_test))
-
 
 rf_df_resid <- rf_df %>%
   mutate(resid = y_test - rf_pred)
