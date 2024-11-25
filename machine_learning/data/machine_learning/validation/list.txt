@@ -1,0 +1,5 @@
+Westernized microbiome (Eubacterium?) with CRCB transporter
+Gemmatimonadota with CRCB transporter
+Stellaceae with CLCF fluoride transporter
+Raoulibacter with no transporter
+Rokuibacterium with no transporter
